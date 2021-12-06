@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.24.0",
+    "requirejs": "^2.3.6",
     "tailwindcss": "^2.2.19"
   }
 }

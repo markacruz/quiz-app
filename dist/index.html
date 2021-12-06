@@ -24,39 +24,44 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-xl mt-2 question">What time is it?</h3>
+                        <h3 class="text-xl mt-2" id="question">What time is it?</h3>
                     </div>
                     
                     <div class="mt-2 mb-4">
                         <ol>
                             <div class="my-1">
-                                <input type="radio" class="form-radio" name="answer" value="a">
+                                <input type="radio" class="form-radio" id="firstAnswer" name="answer" value="a">
                                 <span class="ml-2 firstQuestion">First Answer</span>
                             </div>
                             <div class="my-1">
-                                <input type="radio" class="form-radio" name="answer" value="b">
+                                <input type="radio" class="form-radio" id="secondAnswer" name="answer" value="b">
                                 <span class="ml-2 secondQuestion">Second Answer</span>
                             </div>
                             <div class="my-1">
-                                <input type="radio" class="form-radio" name="answer" value="c">
+                                <input type="radio" class="form-radio" id="thirdAnswer" name="answer" value="c">
                                 <span class="ml-2 thirdQuestion">Third Answer</span>
                             </div>
                             <div class="my-1">
-                                <input type="radio" class="form-radio" name="answer" value="d">
+                                <input type="radio" class="form-radio" id="fourthAnswer" name="answer" value="d">
                                 <span class="ml-2 fourthQuestion">Fourth Answer</span>
                             </div>
                         </ol>
                     </div>
                 </div>
                 <div>
-                    <button class="bg-blue-500 py-2 px-4 w-full text-white rounded-b-lg hover:bg-blue-400">
+                    <button class="bg-blue-500 py-2 px-4 w-full text-white rounded-b-lg hover:bg-blue-400" id="submit">
                         Submit
                     </button>
                 </div>
             </div>
         </div>
 
-        <script src="main.js"></script>
+        <script data-main="config.js" src="require.js"></script>
+        <script>
+            require(['config.js'], function() {
+                require(['scripts/index.js'])
+            });
+        </script>
 
     </body>
 </html>
