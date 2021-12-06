@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>The Quiz App</title>
+        
+    </head>
+    
+    <body class="bg-gradient-to-r from-blue-400 to-blue-300">
+        
+        <div class="flex justify-center items-center h-screen">
+            <div class="container max-w-lg pt-8 bg-white rounded-lg shadow-xl relative">
+                <div class="px-12">
+                    <div class="flex">
+                        <div class="container">
+                            <h1 class="text-4xl font-bold">The Quiz App</h1>
+                        </div>
+                        <div class="container w-8">
+                            <h1 class="text-2xl">0/0</h1>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl mt-2 question">What time is it?</h3>
+                    </div>
+                    
+                    <div class="mt-2 mb-4">
+                        <ol>
+                            <div class="my-1">
+                                <input type="radio" class="form-radio" name="answer" value="a">
+                                <span class="ml-2 firstQuestion">First Answer</span>
+                            </div>
+                            <div class="my-1">
+                                <input type="radio" class="form-radio" name="answer" value="b">
+                                <span class="ml-2 secondQuestion">Second Answer</span>
+                            </div>
+                            <div class="my-1">
+                                <input type="radio" class="form-radio" name="answer" value="c">
+                                <span class="ml-2 thirdQuestion">Third Answer</span>
+                            </div>
+                            <div class="my-1">
+                                <input type="radio" class="form-radio" name="answer" value="d">
+                                <span class="ml-2 fourthQuestion">Fourth Answer</span>
+                            </div>
+                        </ol>
+                    </div>
+                </div>
+                <div>
+                    <button class="bg-blue-500 py-2 px-4 w-full text-white rounded-b-lg hover:bg-blue-400">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script src="main.js"></script>
+
+    </body>
+</html>
