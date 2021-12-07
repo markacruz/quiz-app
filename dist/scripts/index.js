@@ -9,8 +9,8 @@ define(['axios'], function() {
 
     let questions = [];
     let answers = [];
-    let correctAnswer = [];
-    let saveAnswers = [];
+    let correctAnswerData = [];
+    let scoreKeeper = 0;
 
     for (let i = 0; i < limit; i++) answers[i] = [];
 
@@ -32,10 +32,12 @@ define(['axios'], function() {
                 answers[i][1] = res[i].answers.answer_b;
                 answers[i][2] = res[i].answers.answer_c;
                 answers[i][3] = res[i].answers.answer_d;
-                correctAnswer[i] = res[i].correct_answer;
+                correctAnswerData[i] = res[i].correct_answer;
             }
-            console.log(answers)
+            loadQuiz();
         });
+
+    let numAnswered = 0;
 
     let question = document.getElementById("question");
     let firstAnswer = document.getElementById("firstAnswer");
@@ -43,26 +45,29 @@ define(['axios'], function() {
     let thirdAnswer = document.getElementById("thirdAnswer");
     let fourthAnswer = document.getElementById("fourthAnswer");
     let submitButton = document.getElementById("submit");
-
-    let numAnswered = 0;
-    
-    loadQuiz();
+    let numberOfQuestion = document.getElementById("numberAnswered");
+    let numberLimit = document.getElementById("numberLimit");
 
     function loadQuiz() {
-            question.innerHTML = questions[numAnswered];
-            firstAnswer.innerHTML = answers[numAnswered][0];
-            secondAnswer.innerHTML = answers[numAnswered][1];
-            thirdAnswer.innerHTML = answers[numAnswered][2];
-            fourthAnswer.innerHTML = answers[numAnswered][3];
-    }
+            if (numAnswered < limit) {
+                question.innerHTML = questions[numAnswered];
+                firstAnswer.innerHTML = answers[numAnswered][0];
+                secondAnswer.innerHTML = answers[numAnswered][1];
+                thirdAnswer.innerHTML = answers[numAnswered][2];
+                fourthAnswer.innerHTML = answers[numAnswered][3];
+                numberOfQuestion.innerHTML = numAnswered + 1;
+                numberLimit.innerHTML = limit;
+            } else {alert(`You got ${scoreKeeper} out of ${limit}`)}
+        }
 
     submitButton.addEventListener("click", () => {
-        if (numAnswered < limit) {
-            numAnswered++
-            loadQuiz();
-        } 
-        });
+        let radioChecked = document.querySelector('input[name="answer"]:checked').value;
+        if (radioChecked == correctAnswerData[numAnswered]) scoreKeeper++;
+        numAnswered++;
+        document.querySelector('input[name="answer"]:checked').checked = false;
+        loadQuiz();
     });
+});
 
     
 

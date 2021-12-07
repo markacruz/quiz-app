@@ -7,54 +7,60 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
         <title>The Quiz App</title>
-        
     </head>
     
     <body class="bg-gradient-to-r from-blue-400 to-blue-300">
-        
-        <div class="flex justify-center items-center h-screen">
-            <div class="container max-w-lg pt-8 bg-white rounded-lg shadow-xl relative">
-                <div class="px-12">
-                    <div class="flex">
-                        <div class="container">
-                            <h1 class="text-4xl font-bold">The Quiz App</h1>
+
+        <div class="flex-1">
+            <div class="flex justify-center items-center h-screen">
+                <div class="container max-w-lg pt-8 bg-white rounded-lg shadow-xl relative">
+                    <div class="px-12">
+                        <div class="flex">
+                            <div class="container">
+                                <h1 class="text-4xl font-bold">The Quiz App</h1>
+                            </div>
+                            <div class="container bg-gray-100 w-20 pt-1 border-2 text-center rounded">
+                                    <h1 class="inline text-xl" id="numberAnswered">0</h1>
+                                    <h1 class="inline text-xl">/</h1>
+                                    <h1 class="inline text-xl" id="numberLimit">0</h1>
+                                </h1>
+                            </div>
                         </div>
-                        <div class="container w-8">
-                            <h1 class="text-2xl">0/0</h1>
+                        <div>
+                            <h3 class="text-xl my-4" id="question">[]</h3>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <ol>
+                                <div class="my-1">
+                                    <input type="radio" class="form-radio" id="firstRadio" name="answer" value="answer_a">
+                                    <span class="ml-2 firstQuestion" id="firstAnswer">Answer</span>
+                                </div>
+                                <div class="my-1">
+                                    <input type="radio" class="form-radio" id="secondRadio" name="answer" value="answer_b">
+                                    <span class="ml-2 secondQuestion" id="secondAnswer">Answer</span>
+                                </div>
+                                <div class="my-1">
+                                    <input type="radio" class="form-radio" id="thirdRadio" name="answer" value="answer_c">
+                                    <span class="ml-2 thirdQuestion" id="thirdAnswer">Answer</span>
+                                </div>
+                                <div class="my-1">
+                                    <input type="radio" class="form-radio" id="fourthRadio" name="answer" value="answer_d">
+                                    <span class="ml-2 fourthQuestion" id="fourthAnswer">Answer</span>
+                                </div>
+                            </ol>
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-xl mt-2" id="question">What time is it?</h3>
+                        <button class="bg-blue-500 py-2 px-4 w-full text-white rounded-b-lg hover:bg-blue-400" id="submit">
+                            Submit
+                        </button>
                     </div>
-                    
-                    <div class="mt-2 mb-4">
-                        <ol>
-                            <div class="my-1">
-                                <input type="radio" class="form-radio" id="firstAnswer" name="answer" value="a">
-                                <span class="ml-2 firstQuestion">First Answer</span>
-                            </div>
-                            <div class="my-1">
-                                <input type="radio" class="form-radio" id="secondAnswer" name="answer" value="b">
-                                <span class="ml-2 secondQuestion">Second Answer</span>
-                            </div>
-                            <div class="my-1">
-                                <input type="radio" class="form-radio" id="thirdAnswer" name="answer" value="c">
-                                <span class="ml-2 thirdQuestion">Third Answer</span>
-                            </div>
-                            <div class="my-1">
-                                <input type="radio" class="form-radio" id="fourthAnswer" name="answer" value="d">
-                                <span class="ml-2 fourthQuestion">Fourth Answer</span>
-                            </div>
-                        </ol>
-                    </div>
-                </div>
-                <div>
-                    <button class="bg-blue-500 py-2 px-4 w-full text-white rounded-b-lg hover:bg-blue-400" id="submit">
-                        Submit
-                    </button>
                 </div>
             </div>
+
         </div>
+        
 
         <script data-main="config.js" src="require.js"></script>
         <script>
