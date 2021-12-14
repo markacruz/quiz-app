@@ -1,72 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-        <title>The Quiz App - Game</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>The Quiz App - Start</title>
+</head>
+<body class="bg-gradient-to-r from-blue-400 to-blue-300">
     
-    <body class="bg-gradient-to-r from-blue-400 to-blue-300">
+    <div class="flex justify-center items-center h-screen">
+        <div class="container max-w-lg py-7 bg-white rounded-lg shadow-xl relative">
+            <div class="px-12">
 
-        <div class="flex-1 flex-row">
-            <div class="flex justify-center items-center h-screen">
-                <div class="container max-w-lg pt-8 bg-white rounded-lg shadow-xl relative">
-                    <div class="px-12">
-                        <div class="flex">
-                            <div class="container">
-                                <h1 class="text-4xl font-bold">The Quiz App</h1>
-                            </div>
-                            <div class="container bg-gray-100 w-20 pt-1 border-2 text-center rounded">
-                                    <h1 class="inline text-xl" id="numberAnswered">0</h1>
-                                    <h1 class="inline text-xl">/</h1>
-                                    <h1 class="inline text-xl" id="numberLimit">0</h1>
-                                </h1>
-                            </div>
+                <h1 class="text-4xl font-bold mb-4">
+                    Are you ready to test your knowledge?
+                </h1>
+
+                <div class="border-2 rounded-lg py-2 px-4 bg-gray-200">
+                    <h1 class="text-2xl font-semibold text-gray-400">
+                        Start Menu:
+                    </h1>
+                   
+                    <form class="m-2">
+                        <div class="my-2">
+                            <label class="text-xl mb-2 text-gray-400">
+                                &emsp;Category:
+                            </label>
+                            <select id="category" onchange="changeCategory();">
+                                <option value="linux">Linux</option>
+                                <option value="bash">Bash</option>
+                                <option value="docker">Docker</option>
+                                <option value="sql">SQL</option>
+                                <option value="cms">CMS</option>
+                                <option value="code">Code</option>
+                                <option value="devops">DevOps</option>
+                                <option value="uncategorized">Uncategorized</option>
+                            </select>
                         </div>
-                        <div>
-                            <h3 class="text-xl my-4" id="question">[]</h3>
+    
+                        <div class="my-2">
+                            <label class="text-xl text-gray-400">
+                                &emsp;Difficulty:
+                            </label>
+                            <select id="difficulty" onchange="changeDifficulty();">
+                                <option value="easy">Easy</option>
+                                <option value="medium">Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+    
+                        <div class="my-2">
+                            <label class="text-xl text-gray-400">
+                                &emsp;Number of Questions:
+                            </label>
+                            <select id="limit" onchange="changeLimit();">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                            </select>
                         </div>
                         
-                        <div class="mb-6">
-                            <ol>
-                                <div class="my-1">
-                                    <input type="radio" class="form-radio" id="firstRadio" name="answer" value="answer_a">
-                                    <span class="ml-2 firstQuestion" id="firstAnswer">Answer</span>
-                                </div>
-                                <div class="my-1">
-                                    <input type="radio" class="form-radio" id="secondRadio" name="answer" value="answer_b">
-                                    <span class="ml-2 secondQuestion" id="secondAnswer">Answer</span>
-                                </div>
-                                <div class="my-1">
-                                    <input type="radio" class="form-radio" id="thirdRadio" name="answer" value="answer_c">
-                                    <span class="ml-2 thirdQuestion" id="thirdAnswer">Answer</span>
-                                </div>
-                                <div class="my-1">
-                                    <input type="radio" class="form-radio" id="fourthRadio" name="answer" value="answer_d">
-                                    <span class="ml-2 fourthQuestion" id="fourthAnswer">Answer</span>
-                                </div>
-                            </ol>
+                        <div>
+                            <button class="bg-blue-500 mt-2 py-2 px-4 w-full text-white rounded hover:bg-blue-400" id="start" formaction="main.html">
+                                <b>Start</b>
+                            </button>
                         </div>
-                    </div>
-                    <div>
-                        <button class="bg-blue-500 py-2 px-4 w-full text-white rounded-b-lg hover:bg-blue-400" id="submit">
-                            Submit
-                        </button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-        
+    </div>
 
-        <script data-main="config.js" src="require.js"></script>
-        <script>
-            require(['config.js'], function() {
-                require(['scripts/index.js'])
-            });
-        </script>
-
-    </body>
+    <script src="scripts/initial.js"></script>
+</body>
 </html>
