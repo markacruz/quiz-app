@@ -53,9 +53,20 @@ define(['axios'], function() {
 
     function loadQuiz() {
             if (numAnswered < limit) {
-                if (answers.length == 3) {
-                    let lastRadio = document.getElementById("fourthRadio");
-                    lastRadio.style.display = 'none';
+                if (answers[numAnswered].length == 3) {
+                    let fourthRadio = document.getElementById("fourthRadio");
+                    fourthRadio.style.display = 'none';
+                    question.innerHTML = questions[numAnswered];
+                    firstAnswer.innerHTML = answers[numAnswered][0];
+                    secondAnswer.innerHTML = answers[numAnswered][1];
+                    thirdAnswer.innerHTML = answers[numAnswered][2];
+                    numberOfQuestion.innerHTML = numAnswered + 1;
+                    numberLimit.innerHTML = limit;
+                } else if (answers[numAnswered].length == 2) {
+                    let thirdRadio = document.getElementById("thirdRadio");
+                    let fourthRadio = document.getElementById("fourthRadio");
+                    thirdRadio.style.display = 'none';
+                    fourthRadio.style.display = 'none';
                     question.innerHTML = questions[numAnswered];
                     firstAnswer.innerHTML = answers[numAnswered][0];
                     secondAnswer.innerHTML = answers[numAnswered][1];
@@ -85,7 +96,6 @@ define(['axios'], function() {
             let radioChecked = document.querySelector('input[name="answer"]:checked').value;
             
             console.log(radioChecked == correctAnswerData[numAnswered])
-            console.log(radioChecked)
             if (radioChecked == correctAnswerData[numAnswered]) scoreKeeper++;
             numAnswered++;
             document.querySelector('input[name="answer"]:checked').checked = false;
