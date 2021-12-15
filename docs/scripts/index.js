@@ -136,13 +136,3 @@ define(['axios'], function() {
     sessionStorage.setItem('reloaded', '1');
     
 });
-
-    
-
-    
-
-
-
-
-
-
