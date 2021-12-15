@@ -73,14 +73,16 @@ define(['axios'], function() {
                     thirdAnswer.innerHTML = answers[numAnswered][2];
                     numberOfQuestion.innerHTML = numAnswered + 1;
                     numberLimit.innerHTML = limit;
+                } else {
+                    question.innerHTML = questions[numAnswered];
+                    firstAnswer.innerHTML = answers[numAnswered][0];
+                    secondAnswer.innerHTML = answers[numAnswered][1];
+                    thirdAnswer.innerHTML = answers[numAnswered][2];
+                    fourthAnswer.innerHTML = answers[numAnswered][3];
+                    numberOfQuestion.innerHTML = numAnswered + 1;
+                    numberLimit.innerHTML = limit;
                 }
-                question.innerHTML = questions[numAnswered];
-                firstAnswer.innerHTML = answers[numAnswered][0];
-                secondAnswer.innerHTML = answers[numAnswered][1];
-                thirdAnswer.innerHTML = answers[numAnswered][2];
-                fourthAnswer.innerHTML = answers[numAnswered][3];
-                numberOfQuestion.innerHTML = numAnswered + 1;
-                numberLimit.innerHTML = limit;
+                
             } else {
                 if (scoreKeeper < limit/2) {
                     alert(`You got ${scoreKeeper} out of ${limit}! Better luck next time.`);
@@ -94,8 +96,6 @@ define(['axios'], function() {
     submitButton.addEventListener("click", () => {
         try {
             let radioChecked = document.querySelector('input[name="answer"]:checked').value;
-            
-            console.log(radioChecked == correctAnswerData[numAnswered])
             if (radioChecked == correctAnswerData[numAnswered]) scoreKeeper++;
             numAnswered++;
             document.querySelector('input[name="answer"]:checked').checked = false;
