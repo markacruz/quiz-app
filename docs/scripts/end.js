@@ -18,8 +18,3 @@ if (percentage <= 50) {
 playAgain.addEventListener("click", () => {
     window.location.href = "index.html";
 })
-
-if (sessionStorage.getItem('reloaded') ==='1') {
-    window.location="index.html";
-}
-sessionStorage.setItem('reloaded', '1');
