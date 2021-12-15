@@ -113,7 +113,7 @@ define(['axios'], function() {
         } else {
             sessionStorage.setItem("score", scoreKeeper);
             sessionStorage.setItem("limit", limit);
-            window.location.href = "end.html"
+            window.location.href = "./end.html"
         }
     }
 

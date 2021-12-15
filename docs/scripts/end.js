@@ -16,7 +16,7 @@ if (percentage <= 50) {
 }
 
 playAgain.addEventListener("click", () => {
-    window.location.href = "index.html"
+    window.location.href = "index.html";
 })
 
 
