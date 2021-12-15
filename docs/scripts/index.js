@@ -53,6 +53,7 @@ define(['axios'], function() {
 
     function loadQuiz() {
             if (numAnswered < limit) {
+                console.log(answers[numAnswered].length);
                 if (answers[numAnswered].length == 3) {
                     let fourthRadio = document.querySelector('input[id="fourthRadio"]');
                     fourthRadio.style.display = 'none';
