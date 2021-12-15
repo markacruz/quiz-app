@@ -1,7 +1,7 @@
 define(['axios'], function() {
 
     const axios = require("axios");
-    newSelect = JSON.parse(sessionStorage.getItem("select"));
+    let newSelect = JSON.parse(sessionStorage.getItem("select"));
 
     let token = "lPeWERzUHt1nR89lW4AbL6OMYNwk8fj7IBtywzVi";
     let category = newSelect[0];
@@ -14,6 +14,8 @@ define(['axios'], function() {
     let answers = [];
     let correctAnswerData = [];
     let scoreKeeper = 0;
+
+    let nextSet = [scoreKeeper, limit];
 
     for (let i = 0; i < limit; i++) answers[i] = [];
 
@@ -29,13 +31,28 @@ define(['axios'], function() {
 
     getQuestions()
         .then((res) => {
+
             for (let i = 0; i < res.length; i++) {
-                questions[i] = res[i].question;
-                answers[i][0] = res[i].answers.answer_a;
-                answers[i][1] = res[i].answers.answer_b;
-                answers[i][2] = res[i].answers.answer_c;
-                answers[i][3] = res[i].answers.answer_d;
-                correctAnswerData[i] = res[i].correct_answer;
+
+                if (res.length < limit) {
+                    questions = [];
+                    for (let i = 0; i < limit; i++) answers[i] = [];
+                    getQuestions();
+
+                } else {
+                    questions[i] = res[i].question;
+                    if (res[i].answers.answer_a != null) answers[i][0] = res[i].answers.answer_a;
+                    if (res[i].answers.answer_b != null) answers[i][1] = res[i].answers.answer_b;
+                    if (res[i].answers.answer_c != null) answers[i][2] = res[i].answers.answer_c;
+                    if (res[i].answers.answer_d != null) answers[i][3] = res[i].answers.answer_d;
+                    
+                    let correctAnswers = res[i].correct_answers;
+
+                    if (correctAnswers.answer_a_correct == "true") correctAnswerData[i] = "answer_a";
+                    else if (correctAnswers.answer_b_correct == "true") correctAnswerData[i] = "answer_b";
+                    else if (correctAnswers.answer_c_correct == "true") correctAnswerData[i] = "answer_c";
+                    else if (correctAnswers.answer_d_correct == "true") correctAnswerData[i] = "answer_d";             
+                }
             }
             loadQuiz();
         });
@@ -52,47 +69,53 @@ define(['axios'], function() {
     let numberLimit = document.getElementById("numberLimit");
 
     function loadQuiz() {
-            console.log(answers[numAnswered].length);
-            if (numAnswered < limit) {
-                if (answers[numAnswered].length == 3) {
-                    let fourthRadio = document.querySelector('input[id="fourthRadio"]');
-                    fourthRadio.style.display = 'none';
-                    question.innerHTML = questions[numAnswered];
-                    firstAnswer.innerHTML = answers[numAnswered][0];
-                    secondAnswer.innerHTML = answers[numAnswered][1];
-                    thirdAnswer.innerHTML = answers[numAnswered][2];
-                    numberOfQuestion.innerHTML = numAnswered + 1;
-                    numberLimit.innerHTML = limit;
-                } else if (answers[numAnswered].length == 2) {
-                    let thirdRadio = document.querySelector('input[id="thirdRadio"]');
-                    let fourthRadio = document.querySelector('input[id="fourthRadio"]');
-                    thirdRadio.style.display = 'none';
-                    fourthRadio.style.display = 'none';
-                    question.innerHTML = questions[numAnswered];
-                    firstAnswer.innerHTML = answers[numAnswered][0];
-                    secondAnswer.innerHTML = answers[numAnswered][1];
-                    thirdAnswer.innerHTML = answers[numAnswered][2];
-                    numberOfQuestion.innerHTML = numAnswered + 1;
-                    numberLimit.innerHTML = limit;
-                } else {
-                    question.innerHTML = questions[numAnswered];
-                    firstAnswer.innerHTML = answers[numAnswered][0];
-                    secondAnswer.innerHTML = answers[numAnswered][1];
-                    thirdAnswer.innerHTML = answers[numAnswered][2];
-                    fourthAnswer.innerHTML = answers[numAnswered][3];
-                    numberOfQuestion.innerHTML = numAnswered + 1;
-                    numberLimit.innerHTML = limit;
-                }
-                
+        if (numAnswered < limit) {
+    
+            if (answers[numAnswered].length == 3) {
+                let fourthRadio = document.querySelector('input[id="fourthRadio"]');
+                fourthRadio.style.display = 'none';
+                fourthAnswer.style.display = 'none';
+                thirdAnswer.style.display = 'inline';
+                thirdRadio.style.display = 'inline';
+                question.innerHTML = questions[numAnswered];
+                firstAnswer.innerHTML = answers[numAnswered][0];
+                secondAnswer.innerHTML = answers[numAnswered][1];
+                thirdAnswer.innerHTML = answers[numAnswered][2];
+                numberOfQuestion.innerHTML = numAnswered + 1;
+                numberLimit.innerHTML = limit;
+            } else if (answers[numAnswered].length == 2) {
+                let thirdRadio = document.querySelector('input[id="thirdRadio"]');
+                let fourthRadio = document.querySelector('input[id="fourthRadio"]');
+                thirdRadio.style.display = 'none';
+                fourthRadio.style.display = 'none';
+                thirdAnswer.style.display = 'none';
+                fourthAnswer.style.display = 'none';
+                question.innerHTML = questions[numAnswered];
+                firstAnswer.innerHTML = answers[numAnswered][0];
+                secondAnswer.innerHTML = answers[numAnswered][1];
+                thirdAnswer.innerHTML = answers[numAnswered][2];
+                numberOfQuestion.innerHTML = numAnswered + 1;
+                numberLimit.innerHTML = limit;
             } else {
-                if (scoreKeeper < limit/2) {
-                    alert(`You got ${scoreKeeper} out of ${limit}! Better luck next time.`);
-                } else {
-                    alert(`Congratulations! You got ${scoreKeeper} out of ${limit}!`);
-                }
-                window.location.href = "index.html"
+                thirdRadio.style.display = 'inline';
+                fourthRadio.style.display = 'inline';
+                thirdAnswer.style.display = 'inline';
+                fourthAnswer.style.display = 'inline';
+                question.innerHTML = questions[numAnswered];
+                firstAnswer.innerHTML = answers[numAnswered][0];
+                secondAnswer.innerHTML = answers[numAnswered][1];
+                thirdAnswer.innerHTML = answers[numAnswered][2];
+                fourthAnswer.innerHTML = answers[numAnswered][3];
+                numberOfQuestion.innerHTML = numAnswered + 1;
+                numberLimit.innerHTML = limit;
             }
+            
+        } else {
+            sessionStorage.setItem("score", scoreKeeper);
+            sessionStorage.setItem("limit", limit);
+            window.location.href = "end.html"
         }
+    }
 
     submitButton.addEventListener("click", () => {
         try {
@@ -101,12 +124,17 @@ define(['axios'], function() {
             numAnswered++;
             document.querySelector('input[name="answer"]:checked').checked = false;
             loadQuiz();
-        }
-        catch {
+        } catch {
             alert("Choose an answer!")
         }
+        
     });
 
+    if (sessionStorage.getItem('reloaded') ==='1') {
+        window.location="index.html";
+    }
+    sessionStorage.setItem('reloaded', '1');
+    
 });
 
     

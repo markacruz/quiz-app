@@ -19,6 +19,8 @@ function changeLimit() {
     select[2] = selectLimit;
 }
 
+sessionStorage.setItem('reloaded', '0');
+
 startButton.addEventListener("click" , () => {
-    sessionStorage.setItem("select", JSON.stringify(select));
+    sessionStorage.setItem('select', JSON.stringify(select));
 })
