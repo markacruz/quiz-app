@@ -54,7 +54,7 @@ define(['axios'], function() {
     function loadQuiz() {
             if (numAnswered < limit) {
                 if (answers[numAnswered].length == 3) {
-                    let fourthRadio = document.getElementById("fourthRadio");
+                    let fourthRadio = document.querySelector('input[id="fourthRadio"]');
                     fourthRadio.style.display = 'none';
                     question.innerHTML = questions[numAnswered];
                     firstAnswer.innerHTML = answers[numAnswered][0];
@@ -63,8 +63,8 @@ define(['axios'], function() {
                     numberOfQuestion.innerHTML = numAnswered + 1;
                     numberLimit.innerHTML = limit;
                 } else if (answers[numAnswered].length == 2) {
-                    let thirdRadio = document.getElementById("thirdRadio");
-                    let fourthRadio = document.getElementById("fourthRadio");
+                    let thirdRadio = document.querySelector('input[id="thirdRadio"]');
+                    let fourthRadio = document.querySelector('input[id="fourthRadio"]');
                     thirdRadio.style.display = 'none';
                     fourthRadio.style.display = 'none';
                     question.innerHTML = questions[numAnswered];
